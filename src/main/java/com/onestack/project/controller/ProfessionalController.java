@@ -108,7 +108,13 @@ public class ProfessionalController {
 
     /* 전문가 상세보기 */
     @GetMapping("/proDetail")
-    public String getProDetail(Model model, @RequestParam(value = "proNo") int proNo) {
+    public String getProDetail(HttpSession session, Model model, @RequestParam(value = "proNo") int proNo) {
+        Member member = (Member) session.getAttribute("member");
+
+        if (member == null) {
+            return "redirect:/login";
+        }
+
         List<MemberWithProfessional> proList = professionalService.getPro2(proNo);
         List<Review> reviewList = reviewService.getReviewList(proNo);
         List<Integer> itemNoList = professionalService.getItemNo(proNo);

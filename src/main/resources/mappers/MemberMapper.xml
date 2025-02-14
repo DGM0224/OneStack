@@ -544,7 +544,7 @@
 	<select id="getMainEstimationCount" resultType="int">
 		SELECT COUNT(*)
 		FROM Estimation
-		WHERE progress = 4
+		WHERE progress = 4 AND progress = 3
 	</select>
 
 	<!-- 전문가 번호 조회 수정 -->

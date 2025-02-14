@@ -488,38 +488,38 @@
                         전문가 전환하기
                     </button>
 
-                    <button class="custom-button"
-                            th:if="${session.member != null and session.member.memberType == 0}"
-                            th:onclick="|location.href='/proConversion'|">
-                        전문가 전환하기
-                    </button>
-                    <button class="custom-button"
-                            th:if="${session.member != null and session.member.memberType == 1 and session.member.isAdmin != true}"
-                            th:onclick="alert('전문가로 이미 등록되어 있습니다. 더 많은 기회를 찾아보세요!')">
-                        전문가 전환하기
-                    </button>
-                    <button class="custom-button"
-                            th:if="${session.member != null and session.member.memberType == 2 and session.member.isAdmin != true}"
-                            th:onclick="alert('심사 중입니다.')">
-                        전문가 전환하기
-                    </button>
-                    <button class="custom-button"
-                            th:if="${session.member != null and session.member.isAdmin == true}"
-                            th:onclick="alert('관리자는 전문가 등록 심사를 할 수 없습니다.')">
-                        전문가 전환하기
-                    </button>
-                </div>
-                <div class="col-lg-6">
-                    <div class="col-12 mb-3">
-                        <div class="card">
-                            <div class="body">
-                                <div class="text m-3">
-                                    <div class="title" style="font-weight: bold;">협업 관리 도구</div>
-                                    <p class="body-text-for">회원과 매칭된 후 협의된 사항을 관리해보세요!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+					<button class="custom-button"
+							th:if="${session.member != null and session.member.memberType == 0 and session.member.isAdmin != true}"
+							th:onclick="|location.href='/proConversion'|">
+						전문가 전환하기
+					</button>
+					<button class="custom-button"
+							th:if="${session.member != null and session.member.memberType == 1 and session.member.isAdmin != true}"
+							th:onclick="alert('전문가로 이미 등록되어 있습니다. 더 많은 기회를 찾아보세요!')">
+						전문가 전환하기
+					</button>
+					<button class="custom-button"
+							th:if="${session.member != null and session.member.memberType == 2 and session.member.isAdmin != true}"
+							th:onclick="alert('심사 중입니다.')">
+						전문가 전환하기
+					</button>
+					<button class="custom-button"
+							th:if="${session.member != null and session.member.isAdmin == true}"
+							th:onclick="alert('관리자는 전문가 등록 심사를 할 수 없습니다.')">
+						전문가 전환하기
+					</button>
+				</div>
+				<div class="col-lg-6">
+					<div class="col-12 mb-3">
+						<div class="card">
+							<div class="body">
+								<div class="text m-3">
+									<div class="title" style="font-weight: bold;">협업 관리 도구</div>
+									<p class="body-text-for">회원과 매칭된 후 협의된 사항을 관리해보세요!</p>
+								</div>
+							</div>
+						</div>
+					</div>
 
                     <div class="col-12 mb-3">
                         <div class="card">
