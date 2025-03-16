@@ -71,7 +71,7 @@ public class SecurityConfig {
 	}
 	
 	// OAuth2 사용자 서비스 설정을 위한 빈 등록
-	@Bean
+	/*@Bean
 	public OAuth2UserService<OAuth2UserRequest, OAuth2User> oauth2UserService() {
 		// 기본 OAuth2 사용자 서비스 객체 생성
 		DefaultOAuth2UserService delegate = new DefaultOAuth2UserService();
@@ -82,5 +82,5 @@ public class SecurityConfig {
 			OAuth2User oauth2User = delegate.loadUser(userRequest);
 			return oauth2User;
 		};
-	}
+	}*/
 }
