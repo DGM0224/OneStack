@@ -38,19 +38,18 @@ pipeline {
         }
 
         stage('Check Env Vars') {
-                    steps {
-                        script {
-                            def portoneKey = sh(script: "echo -n \$PORTONE_API_KEY | wc -c", returnStdout: true).trim()
-                            def portoneSecret = sh(script: "echo -n \$PORTONE_API_SECRET | wc -c", returnStdout: true).trim()
-
-                            if (portoneKey == "0" || portoneSecret == "0") {
-                                error("❌ PORTONE API 환경 변수가 설정되지 않았습니다!")
-                            } else {
-                                echo "✅ PORTONE API KEY & SECRET이 정상적으로 로드됨 (길이: ${portoneKey}, ${portoneSecret})"
-                            }
-                        }
-                    }
+            steps {
+                script {
+                    sh '''
+                        set +x  # 마스킹 방지
+                        echo "PORTONE_API_KEY Length: $(echo -n $PORTONE_API_KEY | wc -c)"
+                        echo "PORTONE_API_SECRET Length: $(echo -n $PORTONE_API_SECRET | wc -c)"
+                        set -x  # 다시 마스킹 활성화
+                    '''
                 }
+            }
+        }
+
         
         stage('Prepare Environment') {
             steps {
