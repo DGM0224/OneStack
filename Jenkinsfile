@@ -65,13 +65,11 @@ pipeline {
             }
         }
 
-        stages {
-                stage('Check Env Vars') {
+        stage('Check Env Vars') {
                     steps {
-                        sh 'printenv | grep PORTONE'
-                    }
+                            sh 'printenv | grep PORTONE'
+                        }
                 }
-            }
 
     }
     
