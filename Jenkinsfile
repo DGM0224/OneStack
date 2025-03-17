@@ -65,12 +65,13 @@ pipeline {
             }
         }
 
-        stage('Check Env Vars') {
+        stages {
+                stage('Check Env Vars') {
                     steps {
-                        sh 'echo $PORTONE_API_KEY'
-                        sh 'echo $PORTONE_API_SECRET'
+                        sh 'printenv | grep PORTONE'
                     }
                 }
+            }
 
     }
     
