@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     environment {
         DOCKER_COMPOSE = '/usr/local/bin/docker-compose'
 //          KAKAO_CLIENT_ID = credentials('kakao-client-id')
@@ -13,20 +13,20 @@ pipeline {
         PORTONE_API_KEY = credentials('portone-api-key')
         PORTONE_API_SECRET = credentials('portone-api-secret')
     }
-    
+
     stages {
         stage('Clean Workspace') {
             steps {
                 cleanWs()
             }
         }
-        
+
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-        
+
         stage('Build') {
             steps {
                 sh '''
@@ -37,20 +37,6 @@ pipeline {
             }
         }
 
-        stage('Check Env Vars') {
-            steps {
-                script {
-                    sh '''
-                        set +x  # 마스킹 방지
-                        echo "PORTONE_API_KEY Length: $(echo -n $PORTONE_API_KEY | wc -c)"
-                        echo "PORTONE_API_SECRET Length: $(echo -n $PORTONE_API_SECRET | wc -c)"
-                        set -x  # 다시 마스킹 활성화
-                    '''
-                }
-            }
-        }
-
-        
         stage('Prepare Environment') {
             steps {
                 sh '''
@@ -60,26 +46,26 @@ pipeline {
                 '''
             }
         }
-        
+
         stage('Deploy') {
             steps {
                 sh '''
                     # 이전 컨테이너 중지
                     ${DOCKER_COMPOSE} down --volumes=false || true
-                    
+
                     # 컨테이너 시작
                     ${DOCKER_COMPOSE} up -d --build
                 '''
             }
         }
-        
+
         stage('Health Check') {
             steps {
                 sh '${DOCKER_COMPOSE} ps'
             }
         }
     }
-    
+
     post {
         failure {
             sh '''
@@ -92,4 +78,4 @@ pipeline {
             sh 'docker system prune -f --volumes=false'
         }
     }
-} 
+}
