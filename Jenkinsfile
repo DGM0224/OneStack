@@ -64,6 +64,14 @@ pipeline {
                 sh '${DOCKER_COMPOSE} ps'
             }
         }
+
+        stage('Check Env Vars') {
+                    steps {
+                        sh 'echo $PORTONE_API_KEY'
+                        sh 'echo $PORTONE_API_SECRET'
+                    }
+                }
+
     }
     
     post {
