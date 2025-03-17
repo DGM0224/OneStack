@@ -36,6 +36,21 @@ pipeline {
                 '''
             }
         }
+
+        stage('Check Env Vars') {
+                    steps {
+                        script {
+                            def portoneKey = sh(script: "echo -n \$PORTONE_API_KEY | wc -c", returnStdout: true).trim()
+                            def portoneSecret = sh(script: "echo -n \$PORTONE_API_SECRET | wc -c", returnStdout: true).trim()
+
+                            if (portoneKey == "0" || portoneSecret == "0") {
+                                error("❌ PORTONE API 환경 변수가 설정되지 않았습니다!")
+                            } else {
+                                echo "✅ PORTONE API KEY & SECRET이 정상적으로 로드됨 (길이: ${portoneKey}, ${portoneSecret})"
+                            }
+                        }
+                    }
+                }
         
         stage('Prepare Environment') {
             steps {
@@ -64,13 +79,6 @@ pipeline {
                 sh '${DOCKER_COMPOSE} ps'
             }
         }
-
-        stage('Check Env Vars') {
-                    steps {
-                            sh 'printenv | grep PORTONE'
-                        }
-                }
-
     }
     
     post {
