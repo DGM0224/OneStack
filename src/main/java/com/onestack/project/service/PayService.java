@@ -25,10 +25,10 @@ public class PayService {
     @Autowired
     private PayMapper payMapper;
 
-    @Value("${PORTONE_API_KEY}")
+    @Value("${portone.api.key}")
     private String apiKey;
 
-    @Value("${PORTONE_API_SECRET}")
+    @Value("${portone.api.secret}")
     private String apiSecret;
     @Autowired
     private ProMapper proMapper;
