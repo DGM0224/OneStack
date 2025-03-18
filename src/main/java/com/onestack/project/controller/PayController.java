@@ -22,6 +22,7 @@ import java.util.Map;
 
 @Slf4j
 @Controller
+@CrossOrigin(origins = "https://onestack.shop")
 public class PayController {
 
     @Autowired
