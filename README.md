@@ -122,4 +122,4 @@ D -->|CI/CD| C
 - [기획 자료](https://dgm0224.tistory.com/1)
 
 ## 🔗 링크
-- [서비스 링크](https://www.onestack.shop)
+- [서비스 링크](https://www.onestack.store)
